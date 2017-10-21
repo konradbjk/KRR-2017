@@ -1,0 +1,12 @@
+0.0::calcium.
+1.0::bisphonates.
+
+% treatment
+0.15::calcium_effectiveness :- calcium.
+0.50::\+calcium_effectiveness :- bisphonates.
+
+0.8::biosphonates_effectiveness :- bisphonates.
+\+biosphonates_effectiveness :- calcium.
+
+query(biosphonates_effectiveness).
+query(calcium_effectiveness).

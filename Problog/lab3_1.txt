@@ -1,0 +1,39 @@
+% input
+%t(0.3)::smoker.
+%t(0.001)::visitedAsia
+t(0.3)::smoker.
+t(0.01)::visitedAsia.
+t(_)::xray_positive.
+
+% cancer or tubercolosis
+cancer_or_tb :- lung_cancer.
+cancer_or_tb :- tubercolosis.
+
+%% illness
+% lung cancer
+t(_)::lung_cancer:- smoker.
+t(_)::lung_cancer.
+
+% xray
+t(_)::xray_positive.
+t(_)::xray_positive:- cancer_or_tb.
+
+% bronchitis
+t(_)::bronchitis:- smoker.
+t(_)::bronchitis.
+
+% tubercolosis
+t(_)::tubercolosis:- visitedAsia.
+t(_)::tubercolosis.
+
+% dyspnea
+%t(0.8)::dyspnea:-asthma
+t(_)::dyspnea:- cancer_or_tb.
+%0.4::dyspnea:- tubercolosis.
+t(_)::dyspnea:- bronchitis.
+t(_)::dyspnea.
+
+% queries
+query(tubercolosis).
+query(lung_cancer).
+query(bronchitis).
